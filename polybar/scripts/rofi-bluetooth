@@ -273,7 +273,7 @@ show_menu() {
         discoverable=$(discoverable_on)
 
         # Options passed to rofi
-        options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
+        options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nblueman\nExit"
     else
         power="Power: off"
         options="$power\nExit"
@@ -299,6 +299,9 @@ show_menu() {
         "$pairable")
             toggle_pairable
             ;;
+        "blueman")
+            blueman-manager
+            ;; 
         *)
             device=$(bluetoothctl devices | grep "$chosen")
             # Open a submenu if a device is selected
@@ -307,6 +310,19 @@ show_menu() {
     esac
 }
 
+
+toggle_scan() {
+    if scan_on; then
+        kill $(pgrep -f "bluetoothctl scan on")
+        bluetoothctl scan off
+        show_menu
+    else
+        bluetoothctl scan on &
+        echo "Scanning..."
+        sleep 5
+        show_menu
+    fi
+}
 # Rofi command to pipe into, can add any options here
 rofi_command="rofi -theme ${RASI} -dmenu $* -p"
 
@@ -318,3 +334,33 @@ case "$1" in
         show_menu
         ;;
 esac
+
+#toggle_blueman() {
+#    if pgrep -x "blueman-manager" > /dev/null; then
+#        killall blueman-manager
+#    else
+#        blueman-manager &
+#    fi
+#    show_menu
+#}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
