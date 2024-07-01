@@ -15,7 +15,7 @@ MarcDonald
 
 Step 1:Copy all the fonts and icons to their respective directory either /usr/share/fonts, /usr/share/icons or using the .fonts, .icons on home directory
 
-Step 2: Pacman -S rofi polybar bc networkmanager_dmenu blueman(if not installed)
+Step 2: Pacman -S rofi polybar xfce4-panel nitrogen numlockx diodon xfce4-docklike-plugin xcompmgr bc networkmanager_dmenu blueman(if not installed)
 
 Step 3: yay -S zscroll-git(for the player scrolling to work)
 
